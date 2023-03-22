@@ -1,5 +1,7 @@
 extends Node2D
 
+const _FILE_PATH = "user://saved_resource.tres"
+
 var icon : Texture
 var displayed_image : TextureRect
 var saved_resource : SavedResource
@@ -7,7 +9,7 @@ var saved_resource : SavedResource
 
 
 func _ready():
-	pass # Replace with function body.
+	pass
 
 
 func _check_for_saved_resources():
@@ -21,4 +23,18 @@ func _on_plus_button_pressed():
 
 
 func _on_save_button_pressed():
-	pass # Replace with function body.
+	saved_resource = SavedResource.new()
+	
+	for ii in resources_displayer.get_child_count():
+		saved_resource.saved_string = str(ii + 1)
+#		saved_resource.saved_image = resources_displayer.get_child(ii)
+
+	printt(saved_resource.saved_string)
+	var result = ResourceSaver.save(saved_resource, _FILE_PATH)
+	assert(result == OK)
+
+
+func _on_load_button_pressed():
+	if ResourceLoader.exists(_FILE_PATH):
+		saved_resource = ResourceLoader.load(_FILE_PATH) as SavedResource
+		printt("Saved String: ", saved_resource.saved_string)

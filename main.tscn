@@ -53,3 +53,4 @@ text = "Load"
 
 [connection signal="pressed" from="ButtonsContainer/PlusButton" to="." method="_on_plus_button_pressed"]
 [connection signal="pressed" from="ButtonsContainer/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="ButtonsContainer/LoadButton" to="." method="_on_load_button_pressed"]
